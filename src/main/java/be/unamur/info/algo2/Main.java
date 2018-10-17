@@ -1,12 +1,6 @@
 package be.unamur.info.algo2;
 
 import be.unamur.info.algo2.Problem1.Problem1;
-import be.unamur.info.algo2.Problem1.Sequence;
-
-import java.io.*;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
 
