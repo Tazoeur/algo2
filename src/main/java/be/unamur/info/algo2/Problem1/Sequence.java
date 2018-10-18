@@ -13,7 +13,6 @@ public class Sequence {
     /**
      * This is the naive algorithm to solve the majority shareHolder problem
      *
-     *
      * @return
      */
     public String getNaiveMajorityShareHolder() {
@@ -68,5 +67,13 @@ public class Sequence {
 
     public String[] getShareHolders() {
         return this.shareHolders;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getMajorityShareHolder() {
+        return "Goku";
     }
 }
