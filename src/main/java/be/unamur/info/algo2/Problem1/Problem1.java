@@ -8,7 +8,11 @@ import java.util.List;
 public class Problem1 {
     private Sequence[] sequences;
 
-    public void readFile(String file_path) {
+    public Problem1(String file_path) {
+        this.readFile(file_path);
+    }
+
+    private void readFile(String file_path) {
         List<String> list = new ArrayList<String>();
         File file = new File(file_path);
         BufferedReader reader = null;
