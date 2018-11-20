@@ -2,14 +2,15 @@ package be.unamur.info.algo2;
 
 import be.unamur.info.algo2.Problem1.Problem1;
 import be.unamur.info.algo2.Problem2.Problem2;
+import be.unamur.info.algo2.Reader.Reader;
 
 public class Main {
 
     public static void main(String[] args) {
 
         String resources_directory = System.getProperty("user.dir") + "/src/test/resources";
-        String resource_p1 = resources_directory + "/problem1/DiviserPourRegner_2.2.txt";
-        String resource_p2 = resources_directory + "/problem2/ProgrammationDynamique_3.2.txt";
+        String resource_p1 = new Reader(resources_directory + "/problem1/DiviserPourRegner_2.2.txt").getContent();
+        String resource_p2 = new Reader(resources_directory + "/problem2/ProgrammationDynamique_3.2.txt").getContent();
 
         problem_1_naive(resource_p1);
         problem_1(resource_p1);

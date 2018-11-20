@@ -1,72 +1,50 @@
 package be.unamur.info.algo2.Problem2;
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-
 public class Problem2 {
     private Grid[] grids;
 
-    public Problem2(String file_path) {
-        this.readFile(file_path);
+    public Problem2(String content) {
+        this.readContent(content);
     }
 
-    private void readFile(String file_path) {
-        List<String> list = new ArrayList<String>();
-        File file = new File(file_path);
-        BufferedReader reader = null;
-        String line = null;
-        int numberOfLines = 0;
-        int numberOfGrid = 0;
-        int[] sizeOfGrid = new int[2];
-        String[] gridLines = null;
-        int countGridLines = 0;
+    private void readContent(String content) {
+        String[] lines = content.split("\n");
+        int number_of_lines = lines.length;
+        int count_of_lines = 1; // since the first line is always read to know the number of grid
 
-        Boolean nextIsGridSize = true;
+        int number_of_grid = Integer.parseInt(lines[0]);
+        this.grids = new Grid[number_of_grid];
+        int count_of_grid = 0;
 
-        try {
-            reader = new BufferedReader(new FileReader(file));
-            while ((line = reader.readLine()) != null) {
-                numberOfLines++;
+        int count_of_line_in_grid = 0;
+        int number_of_line_in_grid = 0;
 
-                // here we are at line 1, we can get the number of different grid that are present in the given file
-                if(numberOfLines==1) {
-                    this.grids = new Grid[Integer.valueOf(line)];
-                    continue;
-                }
-
-                // here we have to get the size of the next Grid
-                if(nextIsGridSize) {
-                    for(int i = 0; i< 2; i++) {
-                        // have to tweak like this because in the test file, there is no space in the last grid case
-                        sizeOfGrid[i] = Character.getNumericValue(line.replaceAll(" ", "").toCharArray()[i]);
-                    }
-                    gridLines = new String[sizeOfGrid[0]];
-                    nextIsGridSize = false;
-                    continue;
-                }
-
-                // fill the gridLines and increment counter
-                gridLines[countGridLines] = line;
-                countGridLines++;
-
-                // reset the counter & the stored lines
-                if(countGridLines == gridLines.length) {
-                    this.grids[numberOfGrid] = new Grid(sizeOfGrid, gridLines);
-                    countGridLines = 0;
-                    nextIsGridSize = true;
-                    gridLines = null;
-                }
+        boolean next_is_new_grid = true;
+        int[] size = new int[2];
+        String[] str_size;
+        String[] line_content = new String[0];
+        for(int i = 1; i < number_of_lines; i++) {
+            count_of_lines++;
+            if(next_is_new_grid) {
+                str_size = lines[i].split(" ");
+                size[0] = Integer.valueOf(str_size[0]); // line
+                size[1] = Integer.valueOf(str_size[1]); // column
+                next_is_new_grid = false;
+                number_of_line_in_grid = size[0];
+                count_of_line_in_grid = 0;
+                line_content = new String[size[1]];
+                continue;
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                reader.close();
-            } catch (IOException e) {
+
+            line_content[count_of_line_in_grid] = lines[i];
+            count_of_line_in_grid++;
+            // fill the lines array
+            if(count_of_line_in_grid == number_of_line_in_grid) {
+                this.grids[count_of_grid] = new Grid(size, line_content);
+                count_of_grid++;
+                next_is_new_grid = true;
             }
         }
-
     }
 
     public String[] solve() {
