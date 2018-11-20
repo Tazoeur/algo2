@@ -73,6 +73,15 @@ public class Problem2 {
         int length = this.grids.length;
         String[] result = new String[length];
         for(int i = 0; i < length; i++) {
+            result[i] = String.valueOf(this.grids[i].getBestPath());
+        }
+        return result;
+    }
+
+    public String[] solveNaive() {
+        int length = this.grids.length;
+        String[] result = new String[length];
+        for(int i = 0; i < length; i++) {
             result[i] = String.valueOf(this.grids[i].getNaiveBestPath());
         }
         return result;

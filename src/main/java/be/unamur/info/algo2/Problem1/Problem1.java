@@ -68,11 +68,25 @@ public class Problem1 {
         return this.sequences;
     }
 
-    public String[] solve() {
+    /**
+     * Solveur naif
+     *
+     * @return
+     */
+    public String[] solveNaive() {
         int length = this.sequences.length;
         String[] result = new String[length];
         for(int i = 0; i < length; i++) {
             result[i] = this.sequences[i].getNaiveMajorityShareHolder();
+        }
+        return result;
+    }
+
+    public String[] solve() {
+        int length = this.sequences.length;
+        String[] result = new String[length];
+        for(int i = 0; i < length; i++) {
+            result[i] = this.sequences[i].getMajorityShareHolder();
         }
         return result;
     }
