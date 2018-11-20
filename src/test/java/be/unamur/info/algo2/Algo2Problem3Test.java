@@ -48,4 +48,17 @@ public class Algo2Problem3Test {
         assertThat("Testing value[2]", result[2].equals(s_result[2]));
         assertThat("Testing value[3]", result[3].equals(s_result[3]));
     }
+
+    @Test
+    public void test_problem_3_naive() throws Exception{
+        Main main = new Main();
+        String input = "src/test/resources/problem2/ProgrammationDynamique_3.2.txt";
+        String[] result = main.problem_3_naive(getFileText(input));
+        String[] s_result = {"1", "0", "1", "1"};
+        assertThat("Testing size array", result.length == 4);
+        assertThat("Testing value[0]", result[0].equals(s_result[0]));
+        assertThat("Testing value[1]", result[1].equals(s_result[1]));
+        assertThat("Testing value[2]", result[2].equals(s_result[2]));
+        assertThat("Testing value[3]", result[3].equals(s_result[3]));
+    }
 }

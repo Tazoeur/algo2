@@ -47,4 +47,17 @@ public class Algo2Problem1Test {
         assertThat("Testing value[2]", result[2] == null);
         assertThat("Testing value[3]", result[3].equals(s_result[3]));
     }
+
+    @Test
+    public void test_problem_1_naive() throws Exception{
+        Main main = new Main();
+        String input = "src/test/resources/problem1/DiviserPourRegner_2.2.txt";
+        String[] result = main.problem_1_naive(getFileText(input));
+        String[] s_result = {"Goku", "Piccolo", null, "Gohan"};
+        assertThat("Testing size array", result.length == 4);
+        assertThat("Testing value[0]", result[0].equals(s_result[0]));
+        assertThat("Testing value[1]", result[1].equals(s_result[1]));
+        assertThat("Testing value[2]", result[2] == null);
+        assertThat("Testing value[3]", result[3].equals(s_result[3]));
+    }
 }
