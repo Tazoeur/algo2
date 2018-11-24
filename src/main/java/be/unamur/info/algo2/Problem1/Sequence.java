@@ -61,7 +61,7 @@ public class Sequence {
         if(countTab[maxAt] > length/2) {
             return nameTab[maxAt];
         } else {
-            return "null";
+            return null;
         }
     }
 
@@ -73,7 +73,57 @@ public class Sequence {
      *
      * @return
      */
-    public String getMajorityShareHolder() {
-        return "Goku";
+    public String getMajorityShareHolder(int left, int right) {
+        // DIVIDE
+        if(left == right) {
+            return this.shareHolders[left];
+        }
+
+        int total = right - left + 1; // the number of item in the given interval
+        int median = (left + right)/2;
+
+        String majority_left = getMajorityShareHolder(left, median);
+        String majority_right = getMajorityShareHolder(median+1, right);
+
+        System.out.println("total : " + String.valueOf(total));
+        System.out.println("left : " + String.valueOf(left));
+        System.out.println("right : " + String.valueOf(right));
+        System.out.println("majority_left : " + majority_left);
+        System.out.println("majority_right : " + majority_right);
+        System.out.println("\n");
+
+
+        // CONQUER
+        if(majority_left == null && majority_right == null) {
+            return null;
+        }
+
+        if(majority_left != null && majority_left.equals(majority_right)) {
+            return majority_left;
+        }
+
+        int count_majority_left = 0;
+        int count_majority_right = 0;
+        for(int i = left; i <= right; i++) {
+            if(this.shareHolders[i].equals(majority_left)) {
+                count_majority_left++;
+            }
+            if(this.shareHolders[i].equals(majority_right)) {
+                count_majority_right++;
+            }
+        }
+
+        if(majority_left != null && count_majority_left > total/2) {
+            return majority_left;
+        }
+        if(majority_right != null && count_majority_right > total/2) {
+            return majority_right;
+        }
+
+        return null;
+    }
+
+    public int getSize() {
+        return this.shareHolders.length;
     }
 }

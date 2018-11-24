@@ -66,7 +66,7 @@ public class Problem1 {
         int length = this.sequences.length;
         String[] result = new String[length];
         for(int i = 0; i < length; i++) {
-            result[i] = this.sequences[i].getMajorityShareHolder();
+            result[i] = this.sequences[i].getMajorityShareHolder(0, sequences[i].getSize()-1);
         }
         return result;
     }
