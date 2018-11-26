@@ -85,14 +85,6 @@ public class Sequence {
         String majority_left = getMajorityShareHolder(left, median);
         String majority_right = getMajorityShareHolder(median+1, right);
 
-        System.out.println("total : " + String.valueOf(total));
-        System.out.println("left : " + String.valueOf(left));
-        System.out.println("right : " + String.valueOf(right));
-        System.out.println("majority_left : " + majority_left);
-        System.out.println("majority_right : " + majority_right);
-        System.out.println("\n");
-
-
         // CONQUER
         if(majority_left == null && majority_right == null) {
             return null;
