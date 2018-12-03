@@ -16,7 +16,6 @@ public class Problem1 {
         if(line_number < 3) {
             throw new Exception("Not enough line for most trivial case");
         }
-        int numberOfLines = 0;
         int numberOfShareHolder = 0;
         int numberOfSequence = 0;
 
@@ -31,19 +30,14 @@ public class Problem1 {
             if(line.equals("")) {
                 throw new Exception("Empty line");
             }
-            numberOfLines++;
 
             // here we have to get the number of shareHolders that compose the next Sequence
-            if(numberOfLines%2 == 0) {
-                if(!line.matches("\\d+")) {
+            if(i%2 != 0) {
+                if (!line.matches("^\\d+$")) {
                     throw new Exception("Information must be a positive integer");
                 }
                 numberOfShareHolder = Integer.valueOf(line);
-                continue;
-            }
-
-            // here we get the shareHolders
-            if(numberOfLines%2 == 1) {
+            } else {
                 this.sequences[numberOfSequence] = new Sequence(numberOfShareHolder, line.split(" "));
                 numberOfSequence++; // have to keep track of sequences to add new Sequence at right index
                 numberOfShareHolder = 0; // reset count of shareHolders

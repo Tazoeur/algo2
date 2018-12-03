@@ -25,11 +25,13 @@ public class Main {
     public static String[] problem_1_naive(String s_file) {
         try {
             Problem1 p1 = new Problem1(s_file);
+
             String[] result = p1.solveNaive();
             return result;
-        } catch (Exception e) {
-            return null;
+        }catch (Exception e) {
+            e.printStackTrace();
         }
+        return null;
     }
 
 
@@ -39,9 +41,9 @@ public class Main {
             String[] result = p1.solve();
             return result;
         } catch (Exception e) {
-            return null;
+            e.printStackTrace();
         }
-
+        return null;
     }
 
     public static String[] problem_2_naive(String s_file) {
@@ -57,26 +59,26 @@ public class Main {
     }
 
     public static String[] problem_3_naive(String s_file) {
-        Problem3 p3 = null;
         try {
-            p3 = new Problem3(s_file);
+            Problem3 p3 =  new Problem3(s_file);
+            String[] result = p3.solveNaive();
+            return result;
         } catch (Exception e) {
             e.printStackTrace();
         }
-        String[] result = p3.solveNaive();
-        return result;
+        return null;
     }
 
 
     public static String[] problem_3(String s_file) {
-        Problem3 p3 = null;
         try {
-            p3 = new Problem3(s_file);
+            Problem3 p3 =  new Problem3(s_file);
+            String[] result = p3.solve();
+            return result;
         } catch (Exception e) {
             e.printStackTrace();
         }
-        String[] result = p3.solve();
-        return result;
+        return  null;
     }
 
 
