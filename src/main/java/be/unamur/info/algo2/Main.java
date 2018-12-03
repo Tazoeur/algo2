@@ -18,8 +18,8 @@ public class Main {
         problem_1(resource_p1);
         problem_2_naive(resource_p2);
         problem_2(resource_p2);
-        problem_3(resource_p3);
         problem_3_naive(resource_p3);
+        problem_3(resource_p3);
     }
 
     public static String[] problem_1_naive(String s_file) {
