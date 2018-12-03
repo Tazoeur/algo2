@@ -2,6 +2,7 @@ package be.unamur.info.algo2;
 
 import be.unamur.info.algo2.Problem1.Problem1;
 import be.unamur.info.algo2.Problem2.Problem2;
+import be.unamur.info.algo2.Problem3.Problem3;
 import be.unamur.info.algo2.Reader.Reader;
 
 public class Main {
@@ -11,11 +12,14 @@ public class Main {
         String resources_directory = System.getProperty("user.dir") + "/src/test/resources";
         String resource_p1 = new Reader(resources_directory + "/problem1/DiviserPourRegner_2.2.txt").getContent();
         String resource_p2 = new Reader(resources_directory + "/problem2/ProgrammationDynamique_3.2.txt").getContent();
+        String resource_p3 = new Reader(resources_directory + "/problem3/ProgrammationGlouton_4.2.txt").getContent();
 
         problem_1_naive(resource_p1);
         problem_1(resource_p1);
         problem_2_naive(resource_p2);
         problem_2(resource_p2);
+        problem_3(resource_p3);
+        problem_3_naive(resource_p3);
     }
 
     public static String[] problem_1_naive(String s_file) {
@@ -53,22 +57,26 @@ public class Main {
     }
 
     public static String[] problem_3_naive(String s_file) {
-        System.out.println("===");
-        System.out.println(s_file);
-        System.out.println("===");
-        String[] s_tmp = {"1", "0", "1", "1"};
-        //String[] s_tmp = null;
-        return s_tmp;
+        Problem3 p3 = null;
+        try {
+            p3 = new Problem3(s_file);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        String[] result = p3.solveNaive();
+        return result;
     }
 
 
     public static String[] problem_3(String s_file) {
-        System.out.println("===");
-        System.out.println(s_file);
-        System.out.println("===");
-        String[] s_tmp = {"1", "0", "1", "1"};
-        //String[] s_tmp = null;
-        return s_tmp;
+        Problem3 p3 = null;
+        try {
+            p3 = new Problem3(s_file);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        String[] result = p3.solve();
+        return result;
     }
 
 
