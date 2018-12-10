@@ -10,36 +10,6 @@ public class Grid {
         }
     }
     
-    /*@
-     * requires 		
-     * 		\forall int i,j ; 0 <=i && i < matrix.length && 0 <= j && j < matrix[0].length; matrix[i][j] = 'T' || matrix[i][j] = '0' || matrix[i][j] = '#'  
-     * requires int m == matrix.length;
-     * requires int n == matrix[0].length;
-     * requires int beforeL == 0 && int beforeC == 0;
-     * requires int o == 1; (parcourt vers la doite);
-     * requires int [][] maxPaths[][]  intitalisé à 0.
-     * invariant 
-     * 		\forAll int i,j; 0 <=i && i < m && 0 <= j && j < n;
-     * 			(matrix[][] == '#') implies currentCellAsInt(i,j)=-1  	
-     * 			(matrix[][] == '0') implies currentCellAsInt(i,j)=0  	
-     * 			(matrix[][] == 'T') implies currentCellAsInt(i,j)=1
-     * 		forall i<0 || i>=m && j<0 || j>=n; currentCellAsInt(i,j) =-1  	
-     * 
-     * 		if (currentCellAsInt(0,0)<0) maxPath[0][0] = -1 else maxPath[0][0]=currentCellAsInt(0,0)
-     * 			\forAll 0<j && j<n; 
-     * 				(currentCellAsInt(0,j) < 0 || currentCellAsInt(0,j-1) < 0) implies maxPath[0][j]=-1 ;
-     * 				(currentCellAsInt(0,j) >= 0 && currentCellAsInt(0,j-1) >= 0) implies maxPath[0][j]=maxPath[0][j-1] + currentCellAsInt(0,j);
-     * 
-     * 			\forAll i=1 && i<m && i%2 == 0 && j=0 && j < n-1; 
-     * 				if (currentCellAsInt(i,j) < 0 || ((currentCellAsInt(i-1,j) && (currentCellAsInt(i,j-1)) maxPath[i][j]=-1 
-     * 						else maxPath[i][j]=currentCellAsInt(i,j) + max(maxPath[i-1][j],maxPath[i][j-1];
-     * 			\forAll i=1 && i<m && i%2 == 1 && j=1 && j <= n-1; 
-     * 				if (currentCellAsInt(i,j) < 0 || ((currentCellAsInt(i-1,j) && (currentCellAsInt(i,j+1)) maxPath[i][j]=-1 
-     * 						else maxPath[i][j]=currentCellAsInt(i,j) + max(maxPath[i-1][j],maxPath[i][j+1];
-     * 				 
-     * ensure \results == MAX(maxPath[m][n]);
-    @*/ 
-
     public int getBestPath() {
     	int m = matrix.length;
     	int n = matrix[0].length;
@@ -85,20 +55,7 @@ public class Grid {
     			
     		}
     	}
-    		
-    	
-    	for (int i=0;i<m;i++) {
-    		System.out.print("Ligne ["+i+"]"+"=");    		    	
-    		for (int j=0;j<n;j++) System.out.print(maxPath[i][j]+ " ");
-    	    System.out.println();
-    	}
-    	for (int i=0;i<m;i++) {
-    		System.out.print("Ligne ["+i+"]"+"=");    		    	
-    		for (int j=0;j<n;j++) System.out.print(matrix[i][j]+ " ");
-    	    System.out.println();
-    	}
-
-    	System.out.println("Max = "+max);
+    		   	
     	return max;
     }
 
@@ -108,18 +65,6 @@ public class Grid {
     	return max;
     }
     
-    /*@
-     * requires 		
-     * 		\forall int i,j ; 0 <=i && i < matrix.length && 0 <= j && j < matrix[0].length; matrix[i][j] = 'T' || matrix[i][j] = '0' || matrix[i][j] = '#'  
-     * requires int row == 0 and int col == 0 && int moveH == 1; 
-     * invariant 
-     * 		(\forall int i,j,o ; 0 <=i && i < matrix.length && 0 <= j && j < matrix[0].length && (o == 1 || o == -1;
-     * 				matrix[i][j] == '#' ==> maxTreeFrom(i,j,o) == 0;
-     * 		(\forall int i; 0 <=i && i < matrix.length) 		matrix[i][j] != '#' ==> 
-     * 				 
-     * ensure \results == maxTreeFrom(\old row,\old col,\old moveH);
-    @*/ 
-         
         
         public int max_pathFrom(int row, int col, int o) {
         	int max = 0;
