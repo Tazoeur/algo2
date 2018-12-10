@@ -52,6 +52,7 @@ public class Problem2 {
         String[] result = new String[length];
         for(int i = 0; i < length; i++) {
             result[i] = String.valueOf(this.grids[i].getBestPath());
+            System.out.println("Max["+i+"]="+result[i]);
         }
         return result;
     }
@@ -61,7 +62,8 @@ public class Problem2 {
         String[] result = new String[length];
         for(int i = 0; i < length; i++) {
             result[i] = String.valueOf(this.grids[i].getNaiveBestPath());
-        }
+            System.out.println("Max["+i+"]="+result[i]);
+                   }
         return result;
     }
 
