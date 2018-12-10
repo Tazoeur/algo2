@@ -1,9 +1,45 @@
 package be.unamur.info.algo2.Problem1;
 
 public class Sequence {
-    private String[] shareHolders;
+    private /*@ spec_public @*/ String[] shareHolders;
 
+    /**
+     * Constructor of the Sequence Class.
+     * Assignation of the tab param to this.shareHolder with some verifications
+     *
+     * @param size          the size of the array that is passed, just to double check
+     * @param tab           the array on which we will base all our logic.
+     *                      This is the sequence S that contains all different shareHolders
+     * @throws Exception    if array is null
+     *                      if size is negative or zero
+     *                      if array.length and size are different
+     */
+    /*@
+      @ public normal_behaviour
+      @     requires tab != null && size > 0 && size < Integer.MAX_VALUE && tab.length == size;
+      @     ensures (\forall int i;
+      @                 0 <= i && i < size;
+      @                 this.shareHolders[i] == tab[i]);
+      @ also
+      @ public exceptional_behaviour
+      @     requires tab == null;
+      @     signals_only Exception;
+      @ also
+      @ public exceptional_behaviour
+      @     requires size <= 0;
+      @     signals_only Exception;
+      @ also
+      @ public exceptional_behaviour
+      @     requires size > 0  && tab.length != size;
+      @     signals_only Exception;
+      @*/
     public Sequence(int size, String[] tab) throws Exception {
+        if(tab == null) {
+            throw new Exception("Array cannot be null");
+        }
+        if(size <= 0) {
+            throw new Exception("Array size must be greater than 0");
+        }
         if(tab.length != size) {
             throw new Exception("Error in array size");
         }
@@ -11,10 +47,55 @@ public class Sequence {
     }
 
     /**
-     * This is the naive algorithm to solve the majority shareHolder problem
-     *
-     * @return
+     * Return the size of the array
      */
+    /*@
+      @ public normal_behaviour
+      @     requires true;
+      @     assignable \nothing;
+      @     ensures \result == this.shareHolders.length;
+      @
+      @*/
+    public int getSize() {
+        return this.shareHolders.length;
+    }
+
+
+    /**
+     * Return the array of shareHolders
+     *
+     */
+    /*@
+      @ public normal_behaviour
+      @     requires true;
+      @     assignable \nothing;
+      @     ensures (\forall int i; i >= 0 && i < this.shareHolders.length; \result[i] == this.shareHolders[i]);
+      @*/
+    public String[] getShareHolders() {
+        return this.shareHolders;
+    }
+
+
+    /**
+     * Naive algorithm to solve the majority shareHolder problem
+     *
+     */
+    /*@ public normal_behaviour
+      @     requires true;
+      @     assignable \everything
+      @     ensures (
+      @                 \result != null
+      @                 &&
+      @                 (\exists int k; 0 <= k && k < this.shareHolders.length; \result == this.shareHolders[k])
+      @                 &&
+      @                 (\sum int i; 0 <= i && i < this.shareHolders.length && \result == this.shareHolders[i]; 1) > this.shareHolders.length/2
+      @             ) ||
+      @             (
+      @                 result == null
+      @                 &&
+      @                 (\forall int i; 0 <= i && i < this.shareHolders.length; (\sum int j; 0 <= j && j < this.shareHolders.length && this.shareHolders[i] == this.shareHolders[j]; 1) <= this.shareHolders.length/2)
+      @             )
+      @*/
     public String getNaiveMajorityShareHolder() {
         int length = this.shareHolders.length;
         // The big idea here is to keep track of shareHolder's name that have already been seen and a counter of occurrence of that name
@@ -25,6 +106,10 @@ public class Sequence {
         Boolean found = false;                    // is the name already stored in nameTab ?
         String name = "";
 
+        /*@
+          @ loop_invariant 0 <= i && i <= length
+          @ decreases length - i
+          @*/
         for(int i = 0; i < length; i++) {
             name = this.shareHolders[i];            // get the name of the shareholder
             found = false;                          // reset the trigger to false
@@ -63,10 +148,6 @@ public class Sequence {
         } else {
             return null;
         }
-    }
-
-    public String[] getShareHolders() {
-        return this.shareHolders;
     }
 
     /**
@@ -113,9 +194,5 @@ public class Sequence {
         }
 
         return null;
-    }
-
-    public int getSize() {
-        return this.shareHolders.length;
     }
 }

@@ -47,8 +47,45 @@ public class Graph {
     }
 
 
-    public boolean isGraphic() {
+    public boolean isGraphic(int index, int size) {
+        int value = this.degrees[index];
+
+
+
+        // en gros il faut que pour la solution d'naive, il faut générer toutes les façons de prendre les relations de ce sommet parmis les autres sommets disponibles.
+        // si on arrive à générer au moins 1 solution, ça veut dire que l'on peut construire un graphe à partir du tableau des degrés
+        //
+        // par la suite, l'hypothèse gloutonne va être de dire que si on enlève à chaque fois les bouts d'arrete sur le noeud qui a le degré le plus important,
+        // bah on arrive d'office à une solution -> vérifier et prouver l'hypothèse gloutonne et c'est le GG !!! :D
+
+
         return false;
+    }
+
+    private int[] combinatorySolution(int n) {
+        if(n == 1) {
+            int[] tab = new int[this.degrees.length];
+            for(int i = 0; i < this.degrees.length; i++) {
+                tab[i] = i;
+            }
+            return tab;
+        }
+
+        int[] ctab = combinatorySolution(n-1);
+        int[] tab = new int[this.degrees.length];
+
+        for(int pos = 0; pos < n; pos++) {
+            for(int j = 0; j < this.degrees.length; j++) {
+                for (int i = 0; i < ctab.length; i++) {
+                    int[] elem = new int[n];
+                    elem[pos] = j;
+                    for (int k = 0; k < n -1; k++) {
+
+                    }
+                }
+            }
+        }
+        return tab; // this is a mistake, to make the error-check happy!!!!
     }
 
     /**
