@@ -26,7 +26,7 @@ public class Problem2 {
         } catch (Exception e) {
         	throw new Exception("not a parsable number of grid");
         }
-        
+        if (number_of_grid == 0 ) throw new Exception("Not a valid number of grid");
         this.grids = new Grid[number_of_grid];
         int count_of_grid = 0;
 
@@ -36,7 +36,8 @@ public class Problem2 {
         boolean next_is_new_grid = true;
         int[] size = new int[2];
         String[] str_size;
-        String[] line_content = new String[0];        for(int i = 1; i < number_of_lines; i++) {
+        String[] line_content = new String[0];        
+        for(int i = 1; i < number_of_lines; i++) {
             count_of_lines++;
             if(next_is_new_grid) {
                 str_size = lines[i].split(" ");
@@ -46,6 +47,7 @@ public class Problem2 {
                 } catch (Exception e) {
                 	throw new Exception("not a parsable number of grid line or col");
                 } 
+                if (size[0] == 0 || size[1] == 0) throw new Exception("Grid "+count_of_grid+" is not a valid Grid");
                 next_is_new_grid = false;
                 number_of_line_in_grid = size[0];
                 count_of_line_in_grid = 0;
