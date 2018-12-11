@@ -107,12 +107,16 @@ public class Sequence {
         String name = "";
 
         /*@
-          @ loop_invariant 0 <= i && i <= length
+          @ loop_invariant 0 <= i && i < length
           @ decreases length - i
           @*/
         for(int i = 0; i < length; i++) {
             name = this.shareHolders[i];            // get the name of the shareholder
             found = false;                          // reset the trigger to false
+            /*@
+              @ loop_invariant 0 <= j && i < length
+              @ decreases length - j
+              @*/
             for(int j = 0; j < length; j++) {
                 indice = j;                         // keep track of index
                 // at the beginning, all the element of the nameTab are null
@@ -138,8 +142,16 @@ public class Sequence {
 
         // get the index of the maximum value of the countTab array
         int maxAt = 0;
+
+        /*@
+          @ loop_invariant 0 <= i && i <= length;
+          @ loop_invariant (\forall int l; 0 <= l && l < length && countTab[l] != null; countTab[l] <= arr[maxAt]);
+          @ decreases length - i
+          @*/
         for (int i = 0; i < length; i++) {
-            maxAt = countTab[i] > countTab[maxAt] ? i : maxAt;
+            if (countTab[i] > countTab[maxAt]) {
+                maxAt = i;
+            }
         }
 
         // check if the biggest shareHolder have the majority
@@ -152,7 +164,9 @@ public class Sequence {
 
     /**
      *
-     * @return
+     * ici il faut placer les même pré-post condition que sur getNaiveMajorityShareHolder()
+     * on peut rajouter :
+     * @ assignable left,right;
      */
     public String getMajorityShareHolder(int left, int right) {
         // DIVIDE
@@ -177,6 +191,10 @@ public class Sequence {
 
         int count_majority_left = 0;
         int count_majority_right = 0;
+        /*@
+          @ loop_invariant left <= i && i <= right;
+          @ decreases (right - left) - i;
+          @*/
         for(int i = left; i <= right; i++) {
             if(this.shareHolders[i].equals(majority_left)) {
                 count_majority_left++;
