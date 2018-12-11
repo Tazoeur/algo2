@@ -11,7 +11,8 @@ public class Main {
 
         String resources_directory = System.getProperty("user.dir") + "/src/test/resources";
         String resource_p1 = new Reader(resources_directory + "/problem1/DiviserPourRegner_2.2.txt").getContent();
-        String resource_p2 = new Reader(resources_directory + "/problem2/ProgrammationDynamique_3.2.txt").getContent();
+//        String resource_p2 = new Reader(resources_directory + "/problem2/ProgrammationDynamique_3.2.txt").getContent();
+        String resource_p2 = new Reader(resources_directory + "/problem2/ProgrammationDynamique_special.txt").getContent();
         String resource_p3 = new Reader(resources_directory + "/problem3/ProgrammationGlouton_4.2.txt").getContent();
 
         problem_1_naive(resource_p1);
@@ -53,6 +54,7 @@ public class Main {
             result = p2.solveNaive();
         } catch (Exception e) {
             System.out.println(s_file);
+            e.printStackTrace();
         }
         return result;
     }
@@ -63,6 +65,7 @@ public class Main {
             Problem2 p2 = new Problem2(s_file);
             result = p2.solve();
         } catch (Exception e) {
+            System.out.println(s_file);
             e.printStackTrace();
         }
         return result;
