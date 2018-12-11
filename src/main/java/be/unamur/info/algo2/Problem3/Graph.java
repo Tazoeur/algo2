@@ -137,7 +137,7 @@ public class Graph {
     }
 
 
-    public int isGraphic(int index, int size) {
+    public int isGraphic() {
         // at first, check if the degree's sum is even
         if(!this.isSumEven()) {
             return 0;
