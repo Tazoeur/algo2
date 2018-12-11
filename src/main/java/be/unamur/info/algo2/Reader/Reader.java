@@ -33,7 +33,8 @@ public class Reader {
 
             while (line != null) {
                 sb.append(line);
-                sb.append(System.lineSeparator());
+                sb.append(/*System.lineSeparator()*/'\n');
+                
                 line = br.readLine();
             }
             this.file_content = sb.toString();

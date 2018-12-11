@@ -22,7 +22,7 @@ public class Problem2 {
         }
         
         try {
-        number_of_grid = Integer.parseInt(lines[0]);
+        number_of_grid = Integer.valueOf(lines[0]);
         } catch (Exception e) {
         	throw new Exception("not a parsable number of grid");
         }
@@ -36,8 +36,7 @@ public class Problem2 {
         boolean next_is_new_grid = true;
         int[] size = new int[2];
         String[] str_size;
-        String[] line_content = new String[0];
-        for(int i = 1; i < number_of_lines; i++) {
+        String[] line_content = new String[0];        for(int i = 1; i < number_of_lines; i++) {
             count_of_lines++;
             if(next_is_new_grid) {
                 str_size = lines[i].split(" ");
