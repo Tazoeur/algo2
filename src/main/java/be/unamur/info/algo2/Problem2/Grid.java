@@ -13,6 +13,7 @@ public class Grid {
     public int getBestPath() {
     	int m = matrix.length;
     	int n = matrix[0].length;
+    	if (m == 0 || n == 0) return 0;
     	int [][] maxPath = new int [m][n];
     	int o = 1;
     	int beforeL = 0; 

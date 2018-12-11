@@ -49,7 +49,7 @@ public class Algo2Problem2Test {
         assertThat("Testing value[3]", result[3].equals(s_result[3]));
         assertThat("Testing value[4]", result[4].equals(s_result[4]));
         assertThat("Testing value[5]", result[5].equals(s_result[5]));
-        assertThat("Testing value[6]", result[6].equals(s_result[6]));
+        assertThat("Testing value[6]", result[6] == null);
     }
 
     @Test
@@ -65,6 +65,6 @@ public class Algo2Problem2Test {
         assertThat("Testing value[3]", result[3].equals(s_result[3]));
         assertThat("Testing value[4]", result[4].equals(s_result[4]));
         assertThat("Testing value[5]", result[5].equals(s_result[5]));
-        assertThat("Testing value[6]", result[6].equals(s_result[6]));
+        assertThat("Testing value[6]", result[6]==null);
     }
 }

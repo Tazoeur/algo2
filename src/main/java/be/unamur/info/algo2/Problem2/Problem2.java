@@ -10,7 +10,8 @@ public class Problem2 {
     }
 
     private void readContent(String content) throws Exception {
-        if(content.equals("") || content.equals("0")) {
+        //@ requires content != "0" && content != "";
+    	if(content.equals("") || content.equals("0")) {
             throw new Exception("Empty content given");
         }
         
@@ -47,9 +48,10 @@ public class Problem2 {
                 } catch (Exception e) {
                 	throw new Exception("not a parsable number of grid line or col");
                 } 
-                if (size[0] == 0 || size[1] == 0) throw new Exception("Grid "+count_of_grid+" is not a valid Grid");
+                //if (size[0] == 0 || size[1] == 0) throw new Exception("Grid "+count_of_grid+" is not a valid Grid");
                 next_is_new_grid = false;
                 number_of_line_in_grid = size[0];
+                //if (lines.length < (count_of_lines + number_of_line_in_grid) )
                 count_of_line_in_grid = 0;
                 line_content = new String[size[1]];
                 continue;
@@ -70,7 +72,7 @@ public class Problem2 {
         int length = this.grids.length;
         String[] result = new String[length];
         for(int i = 0; i < length; i++) {
-            result[i] = String.valueOf(this.grids[i].getBestPath());
+        	if (grids[i] != null) result[i] = String.valueOf(this.grids[i].getBestPath());         	
         }
         return result;
     }
@@ -79,8 +81,8 @@ public class Problem2 {
         int length = this.grids.length;
         String[] result = new String[length];
         for(int i = 0; i < length; i++) {
-            result[i] = String.valueOf(this.grids[i].getNaiveBestPath());
-                   }
+        	if (grids[i] != null) result[i] = String.valueOf(this.grids[i].getBestPath());
+        }
         return result;
     }
 
