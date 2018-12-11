@@ -72,7 +72,8 @@ public class Problem2 {
         int length = this.grids.length;
         String[] result = new String[length];
         for(int i = 0; i < length; i++) {
-        	if (grids[i] != null) result[i] = String.valueOf(this.grids[i].getBestPath());         	
+        	if (grids[i] != null) result[i] = String.valueOf(this.grids[i].getBestPath());  
+        	else result[i] = "0";
         }
         return result;
     }
@@ -82,6 +83,7 @@ public class Problem2 {
         String[] result = new String[length];
         for(int i = 0; i < length; i++) {
         	if (grids[i] != null) result[i] = String.valueOf(this.grids[i].getBestPath());
+        	else result[i] = "0";
         }
         return result;
     }
