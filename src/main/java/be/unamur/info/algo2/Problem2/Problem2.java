@@ -39,6 +39,7 @@ public class Problem2 {
 
         int count_of_line_in_grid = 0;
         int number_of_line_in_grid = 0;
+        int number_of_char_in_line = 0;
 
         boolean next_is_new_grid = true;
         int[] size = new int[2];
@@ -62,13 +63,14 @@ public class Problem2 {
                 next_is_new_grid = false;
                 number_of_line_in_grid = size[0];
                 count_of_line_in_grid = 0;
-                line_content = new String[size[1]];
+                number_of_char_in_line = size[1];
+                line_content = new String[number_of_line_in_grid];
                 continue;
             }
             if(!lines[i].matches("^(0|T|#)+$")) {
                 throw new Exception("Line " + i + " contains illegal characters (" + lines[i] + ")");
             }
-            if(lines[i].toCharArray().length != line_content.length) {
+            if(lines[i].toCharArray().length != number_of_char_in_line) {
                 throw new Exception("Line " + i + " does not respect the characters count");
             }
             line_content[count_of_line_in_grid] = lines[i];
