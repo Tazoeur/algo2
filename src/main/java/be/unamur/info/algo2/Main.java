@@ -47,14 +47,24 @@ public class Main {
     }
 
     public static String[] problem_2_naive(String s_file) {
+        String[] result = null; 
+        try {
         Problem2 p2 = new Problem2(s_file);
-        String[] result = p2.solveNaive();
+        result = p2.solveNaive();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return result;
     }
 
     public static String[] problem_2(String s_file) {
+        String[] result = null; 
+        try {
         Problem2 p2 = new Problem2(s_file);
-        String[] result = p2.solve();
+        result = p2.solve();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return result;
     }
 

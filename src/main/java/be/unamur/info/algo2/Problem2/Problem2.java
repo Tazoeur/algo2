@@ -1,18 +1,32 @@
 package be.unamur.info.algo2.Problem2;
 
+
 public class Problem2 {
     private Grid[] grids;
+    int number_of_grid = 0;
 
-    public Problem2(String content) {
+    public Problem2(String content) throws Exception {
         this.readContent(content);
     }
 
-    private void readContent(String content) {
-        String[] lines = content.split("\n");
+    private void readContent(String content) throws Exception {
+        if(content.equals("") || content.equals("0")) {
+            throw new Exception("Empty content given");
+        }
+        
+    	String[] lines = content.split("\n");
         int number_of_lines = lines.length;
         int count_of_lines = 1; // since the first line is always read to know the number of grid
-
-        int number_of_grid = Integer.parseInt(lines[0]);
+        if(number_of_lines < 3) {
+            throw new Exception("Not enough line for most trivial case");
+        }
+        
+        try {
+        number_of_grid = Integer.parseInt(lines[0]);
+        } catch (Exception e) {
+        	throw new Exception("not a parsable number of grid");
+        }
+        
         this.grids = new Grid[number_of_grid];
         int count_of_grid = 0;
 
@@ -27,8 +41,12 @@ public class Problem2 {
             count_of_lines++;
             if(next_is_new_grid) {
                 str_size = lines[i].split(" ");
-                size[0] = Integer.valueOf(str_size[0]); // line
-                size[1] = Integer.valueOf(str_size[1]); // column
+                try {
+                	size[0] = Integer.parseInt(str_size[0]); // line
+                	size[1] = Integer.parseInt(str_size[1]); // column
+                } catch (Exception e) {
+                	throw new Exception("not a parsable number of grid line or col");
+                } 
                 next_is_new_grid = false;
                 number_of_line_in_grid = size[0];
                 count_of_line_in_grid = 0;
