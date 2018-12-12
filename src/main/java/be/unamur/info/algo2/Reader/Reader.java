@@ -31,15 +31,29 @@ public class Reader {
             StringBuilder sb = new StringBuilder();
             String line = br.readLine();
 
-            while (line != null) {
-                sb.append(line);
-                sb.append(/*System.lineSeparator()*/'\n');
-                
-                line = br.readLine();
+//            while (line != null) {
+//                sb.append(line);
+//                sb.append(/*System.lineSeparator()*/'\n');
+//                
+//                line = br.readLine();
+//            }
+            if(line != null) { 
+            	sb.append(line); 
+            	line = br.readLine(); 
+            } 
+            
+            while (line != null) { 
+            	sb.append(/*System.lineSeparator()*/"\n"); 
+            	sb.append(line); 
+            	line = br.readLine(); 
             }
+        
+        
             this.file_content = sb.toString();
         } finally {
             br.close();
         }
     }
 }
+
+// if(line != null) { sb.append(line); line = br.readLine(); } while (line != null) { sb.append(/*System.lineSeparator()*/"\n"); sb.append(line); line = br.readLine(); }
