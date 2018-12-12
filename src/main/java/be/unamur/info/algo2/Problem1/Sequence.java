@@ -105,6 +105,7 @@ public class Sequence {
         int indice = 0;                           // the index of our 2 arrays (countTab & nameTab)
         Boolean found = false;                    // is the name already stored in nameTab ?
         String name = "";
+        int maxAt = 0;
 
         /*@
           @ loop_invariant 0 <= i && i < length
@@ -137,20 +138,11 @@ public class Sequence {
             } else {
                 // if found, increment the counter
                 countTab[indice]++;
-            }
-        }
 
-        // get the index of the maximum value of the countTab array
-        int maxAt = 0;
-
-        /*@
-          @ loop_invariant 0 <= i && i <= length;
-          @ loop_invariant (\forall int l; 0 <= l && l < length && countTab[l] != null; countTab[l] <= arr[maxAt]);
-          @ decreases length - i
-          @*/
-        for (int i = 0; i < length; i++) {
-            if (countTab[i] > countTab[maxAt]) {
-                maxAt = i;
+                // keep track of most found name
+                if (countTab[indice] > countTab[maxAt]) {
+                    maxAt = indice;
+                }
             }
         }
 
